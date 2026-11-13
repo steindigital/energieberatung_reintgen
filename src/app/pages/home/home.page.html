@@ -1,0 +1,118 @@
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow">{{ t().home.eyebrow }} <app-value [text]="i18n.siteText().region" /></p>
+      <h1>{{ t().home.title }}</h1>
+      <p class="hero__intro">
+        {{ t().home.introBefore }} <strong>{{ site.ownerName }}</strong>{{ t().home.introAfter }}
+      </p>
+      <p class="hero__lead">{{ t().home.lead }}</p>
+      <div class="button-group">
+        <a [routerLink]="i18n.path('contact')" class="btn btn--primary btn--large">
+          {{ t().common.ctaButton }}
+          <app-icon name="arrowRight" [size]="20" />
+        </a>
+        <a [routerLink]="i18n.path('services')" class="btn btn--secondary btn--large">{{ t().home.servicesButton }}</a>
+      </div>
+    </div>
+    <!-- BILD: z. B. Porträtfoto oder Foto eines sanierten Wohnhauses einsetzen -->
+    <app-image-placeholder class="hero__image" [label]="t().home.heroImage" ratio="4 / 5" />
+  </div>
+</section>
+
+<!-- Vorteile -->
+<section class="section" aria-labelledby="vorteile-titel">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">{{ t().home.benefitsEyebrow }}</p>
+      <h2 id="vorteile-titel">{{ t().home.benefitsTitle }}</h2>
+    </div>
+    <ul class="feature-grid">
+      @for (benefit of t().home.benefits; track benefit.title) {
+        <li class="feature">
+          <span class="icon-badge"><app-icon [name]="benefit.icon" /></span>
+          <h3>{{ benefit.title }}</h3>
+          <p>{{ benefit.text }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Zielgruppen: Privat- und Geschäftskunden -->
+<section class="section section--alt" aria-labelledby="leistungen-titel">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">{{ t().home.audiencesEyebrow }}</p>
+      <h2 id="leistungen-titel">{{ t().home.audiencesTitle }}</h2>
+      <p>{{ t().home.audiencesText }}</p>
+    </div>
+    <ul class="audience-grid">
+      @for (a of audiences; track a) {
+        @let card = t().home.audienceCards[a];
+        <li class="audience-card">
+          <span class="icon-badge icon-badge--large"><app-icon [name]="card.icon" [size]="28" /></span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.text }}</p>
+          <ul class="check-list">
+            @for (point of card.points; track point) {
+              <li>
+                <app-icon name="check" [size]="20" />
+                <span>{{ point }}</span>
+              </li>
+            }
+          </ul>
+          <a [routerLink]="i18n.path('services')" [queryParams]="{ audience: a }" class="btn btn--secondary">
+            {{ card.link }}
+            <app-icon name="arrowRight" [size]="18" />
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Ablauf -->
+<section class="section" aria-labelledby="ablauf-titel">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">{{ t().home.processEyebrow }}</p>
+      <h2 id="ablauf-titel">{{ t().home.processTitle }}</h2>
+    </div>
+    <ol class="steps">
+      @for (step of t().process; track step.title; let i = $index) {
+        <li class="step">
+          <span class="step__number" aria-hidden="true">{{ i + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </li>
+      }
+    </ol>
+    <p class="section-more">
+      <a [routerLink]="i18n.path('knowledge')" fragment="ablauf" class="link-arrow">
+        {{ t().home.processMore }}
+        <app-icon name="arrowRight" [size]="18" />
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- Wissenswertes -->
+<section class="section section--alt" aria-labelledby="wissen-titel">
+  <div class="container split">
+    <!-- BILD: z. B. Detail einer Dämmung oder Beratungssituation -->
+    <app-image-placeholder [label]="t().home.knowledgeImage" ratio="3 / 2" />
+    <div>
+      <p class="eyebrow">{{ t().home.knowledgeEyebrow }}</p>
+      <h2 id="wissen-titel">{{ t().home.knowledgeTitle }}</h2>
+      <p>{{ t().home.knowledgeText }}</p>
+      <a [routerLink]="i18n.path('knowledge')" class="btn btn--secondary">
+        <app-icon name="book" [size]="20" />
+        {{ t().home.knowledgeButton }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<app-cta-section />

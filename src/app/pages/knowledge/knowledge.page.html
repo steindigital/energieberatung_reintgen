@@ -1,0 +1,134 @@
+@let k = t().knowledge;
+
+<app-page-header [eyebrow]="k.eyebrow" [title]="k.title">
+  <p>{{ k.lead }}</p>
+</app-page-header>
+
+<div class="container knowledge-layout">
+  <aside class="toc" aria-labelledby="toc-titel">
+    <h2 id="toc-titel" class="toc__title">{{ k.tocTitle }}</h2>
+    <ol>
+      @for (item of k.toc; track item.id) {
+        <li><a [routerLink]="i18n.path('knowledge')" [fragment]="item.id">{{ item.label }}</a></li>
+      }
+    </ol>
+  </aside>
+
+  <div class="knowledge-content">
+    <section id="warum" class="article prose">
+      <h2>{{ k.why.title }}</h2>
+      @for (paragraph of k.why.paragraphs; track $index) {
+        <p>{{ paragraph }}</p>
+      }
+    </section>
+
+    <section id="effizienz" class="article prose">
+      <h2>{{ k.efficiency.title }}</h2>
+      <p>{{ k.efficiency.intro }}</p>
+      <ul class="icon-list">
+        @for (item of k.efficiency.items; track item.label) {
+          <li>
+            <app-icon [name]="item.icon" />
+            <span><strong>{{ item.label }}</strong> {{ item.text }}</span>
+          </li>
+        }
+      </ul>
+      <p [innerHTML]="k.efficiency.outroHtml"></p>
+    </section>
+
+    <section id="sanierung" class="article prose">
+      <h2>{{ k.renovation.title }}</h2>
+      <p>{{ k.renovation.intro }}</p>
+      <ol class="numbered-list">
+        @for (item of k.renovation.items; track item.label) {
+          <li><strong>{{ item.label }}</strong> {{ item.text }}</li>
+        }
+      </ol>
+    </section>
+
+    <section id="ablauf" class="article prose">
+      <h2>{{ k.process.title }}</h2>
+      <p>{{ k.process.intro }}</p>
+      <ol class="timeline">
+        @for (step of t().process; track step.title; let i = $index) {
+          <li>
+            <span class="timeline__marker" aria-hidden="true">{{ i + 1 }}</span>
+            <div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.text }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+      <h3>{{ k.process.documentsTitle }}</h3>
+      <ul class="check-list">
+        @for (doc of k.process.documents; track doc) {
+          <li>
+            <app-icon name="check" [size]="20" />
+            <span>{{ doc }}</span>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section id="foerderung" class="article prose">
+      <h2>{{ k.funding.title }}</h2>
+      <p>{{ k.funding.intro }}</p>
+      <ul class="check-list">
+        @for (fact of k.funding.facts; track fact) {
+          <li>
+            <app-icon name="check" [size]="20" />
+            <span>{{ fact }}</span>
+          </li>
+        }
+      </ul>
+      <p class="note">
+        <app-icon name="info" [size]="20" />
+        <span>{{ k.funding.note }}</span>
+      </p>
+      <p>{{ k.funding.linksIntro }}</p>
+      <ul class="link-list">
+        @for (link of k.funding.links; track link.href) {
+          <li>
+            <a [href]="link.href" target="_blank" rel="noopener noreferrer">
+              {{ link.label }}
+              <app-icon name="external" [size]="16" />
+              <span class="visually-hidden"> {{ t().common.externalLink }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section id="tipps" class="article prose">
+      <h2>{{ k.tips.title }}</h2>
+      <p>{{ k.tips.intro }}</p>
+      <ul class="tip-grid">
+        @for (tip of k.tips.items; track tip.title) {
+          <li class="tip">
+            <app-icon name="bulb" />
+            <h3>{{ tip.title }}</h3>
+            <p>{{ tip.text }}</p>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section id="faq" class="article prose">
+      <h2>{{ k.faq.title }}</h2>
+      <div class="accordion">
+        @for (faq of k.faq.items; track faq.question) {
+          <details class="accordion__item">
+            <summary>{{ faq.question }}</summary>
+            <p>{{ faq.answer }}</p>
+          </details>
+        }
+      </div>
+      <p>
+        {{ k.faq.moreBefore }} <a [routerLink]="i18n.path('contact')">{{ k.faq.moreLink }}</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<app-cta-section />

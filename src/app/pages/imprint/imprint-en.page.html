@@ -1,0 +1,71 @@
+<app-page-header title="Legal notice (Impressum)" />
+
+<section class="section section--tight">
+  <div class="container container--narrow prose legal">
+    <!-- VOR VERÖFFENTLICHUNG ENTFERNEN / REMOVE BEFORE PUBLISHING -->
+    <app-placeholder-block title="Template – please review">
+      <p>
+        This legal notice is a template with placeholders and an English translation of the German Impressum. Please
+        complete all highlighted information, remove sections that do not apply, keep it consistent with the German
+        version and have it legally reviewed before publishing. Consider stating that the German version is
+        authoritative. Then remove this note.
+      </p>
+    </app-placeholder-block>
+
+    <h2>Information pursuant to Section 5 DDG (German Digital Services Act)</h2>
+    <p>
+      <app-value [text]="site.ownerName" />
+      <br />
+      <app-value [text]="site.brandName" />
+      <br />
+      <app-value [text]="site.street" />
+      <br />
+      <app-value [text]="site.zip" /> <app-value [text]="site.city" />
+      <br />
+      Germany
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Phone: <app-value [text]="site.phone" />
+      <br />
+      Email: <app-value [text]="site.email" />
+    </p>
+
+    <h2>Professional title and professional regulations</h2>
+    <p>
+      Professional title: <app-value [text]="site.localized.en.jobTitle" />
+      <br />
+      Awarded in: <app-value text="[Country in which the professional title was awarded – only if applicable]" />
+      <br />
+      Competent chamber: <app-value text="[Name and address of the chamber – only if you are a member]" />
+      <br />
+      Professional regulations: <app-value text="[Name and source – only if applicable]" />
+    </p>
+
+    <h2>VAT identification number</h2>
+    <p>
+      VAT identification number pursuant to Section 27a of the German VAT Act (UStG):
+      <app-value text="[VAT ID – only if available; otherwise remove this section]" />
+    </p>
+
+    <h2>Professional liability insurance</h2>
+    <p>
+      <app-value text="[Name and address of the insurer, territorial scope – only if legally required or desired]" />
+    </p>
+
+    <h2>Responsible for content pursuant to Section 18 (2) MStV</h2>
+    <p>
+      <app-value [text]="site.ownerName" />
+      <br />
+      <app-value [text]="site.street" />, <app-value [text]="site.zip" /> <app-value [text]="site.city" />
+    </p>
+
+    <h2>Consumer dispute resolution</h2>
+    <p>
+      <app-value
+        text="[Statement on participation in dispute resolution proceedings before a consumer arbitration board – please check whether and in what form this statement is required for you]"
+      />
+    </p>
+  </div>
+</section>

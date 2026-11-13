@@ -1,0 +1,104 @@
+<app-page-header [eyebrow]="t().services.eyebrow" [title]="t().services.title">
+  <p>{{ t().services.lead }}</p>
+</app-page-header>
+
+<section class="section section--tight" [attr.aria-label]="t().services.overviewLabel">
+  <div class="container">
+    <!-- Reiter: Privatkunden / Geschäftskunden -->
+    <div class="audience-tabs" role="tablist" [attr.aria-label]="t().services.audienceLabel">
+      @for (a of audiences; track a) {
+        <button
+          type="button"
+          role="tab"
+          class="audience-tab"
+          [id]="'tab-' + a"
+          [attr.aria-selected]="audience() === a"
+          [attr.aria-controls]="'panel-leistungen'"
+          [attr.tabindex]="audience() === a ? 0 : -1"
+          (click)="select(a)"
+          (keydown)="onTabKeydown($event)"
+        >
+          <app-icon [name]="a === 'private' ? 'home' : 'building'" [size]="20" />
+          {{ t().services.audiences[a].tabLabel }}
+        </button>
+      }
+    </div>
+
+    <div id="panel-leistungen" role="tabpanel" [attr.aria-labelledby]="'tab-' + audience()">
+      <div class="audience-intro">
+        <h2>{{ current().title }}</h2>
+        <p>{{ current().intro }}</p>
+      </div>
+
+      <nav class="chip-nav" [attr.aria-label]="t().services.jumpLabel">
+        <ul>
+          @for (service of current().items; track service.id) {
+            <li>
+              <a
+                [routerLink]="i18n.path('services')"
+                [queryParams]="ctaQuery()"
+                [fragment]="service.id"
+                >{{ service.title }}</a
+              >
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="service-list">
+        @for (service of current().items; track service.id) {
+          <article [id]="service.id" class="service">
+            <div class="service__header">
+              <span class="icon-badge icon-badge--large"><app-icon [name]="service.icon" [size]="28" /></span>
+              <h3>{{ service.title }}</h3>
+            </div>
+            <p class="service__summary">{{ service.summary }}</p>
+            <ul class="check-list">
+              @for (detail of service.details; track detail) {
+                <li>
+                  <app-icon name="check" [size]="20" />
+                  <span>{{ detail }}</span>
+                </li>
+              }
+            </ul>
+            @if (service.note) {
+              <p class="note">
+                <app-icon name="info" [size]="20" />
+                <span>{{ service.note }}</span>
+              </p>
+            }
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="foerderung-titel">
+  <div class="container container--narrow prose">
+    <h2 id="foerderung-titel">{{ t().services.fundingTitle }}</h2>
+    @for (paragraph of t().services.fundingParagraphsHtml; track $index) {
+      <p [innerHTML]="paragraph"></p>
+    }
+    <p>
+      <a [routerLink]="i18n.path('knowledge')" fragment="foerderung" class="link-arrow">
+        {{ t().services.fundingMore }}
+        <app-icon name="arrowRight" [size]="18" />
+      </a>
+    </p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="kosten-titel">
+  <div class="container container--narrow prose">
+    <h2 id="kosten-titel">{{ t().services.costsTitle }}</h2>
+    <p>{{ t().services.costsText }}</p>
+    <!-- PLATZHALTER: Preisinformationen je Zielgruppe in de.ts / en.ts → services.audiences.*.pricePlaceholder -->
+    <app-placeholder-block [title]="t().services.pricePlaceholderTitle + ' – ' + current().tabLabel">
+      <p>{{ current().pricePlaceholder }}</p>
+    </app-placeholder-block>
+  </div>
+</section>
+
+<!-- Die Anfrage übernimmt die gewählte Zielgruppe ins Kontaktformular -->
+<app-cta-section [title]="t().services.ctaTitle" [text]="t().services.ctaText" [queryParams]="ctaQuery()" />

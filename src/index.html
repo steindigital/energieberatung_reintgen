@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Standard-Titel. Pro Seite werden Titel und Beschreibung automatisch gesetzt (src/app/i18n/de.ts / en.ts → meta). -->
+    <title>Energieberatung Reintgen – Energieberatung im Rheingau-Taunus-Kreis</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Energieberatung Reintgen im Rheingau-Taunus-Kreis: Energieberatung für Privat- und Geschäftskunden – Gebäudeanalyse, Sanierungsfahrplan, Heizung, Dämmung und Hinweise zu Fördermöglichkeiten."
+    />
+    <meta name="theme-color" content="#f1f5ef" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      // Farbschema vor dem ersten Rendern setzen (verhindert kurzes Aufblitzen).
+      // Der Schlüssel muss mit src/app/core/theme.service.ts übereinstimmen.
+      (function () {
+        try {
+          // Reihenfolge: 1. eigene Auswahl über den Schalter, 2. Systemeinstellung, 3. hell
+          var t = localStorage.getItem('theme-preference');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.dataset.theme = t;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>Bitte aktivieren Sie JavaScript, um diese Website zu nutzen.</noscript>
+    <app-root></app-root>
+  </body>
+</html>

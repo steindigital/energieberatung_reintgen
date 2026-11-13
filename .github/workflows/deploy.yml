@@ -1,0 +1,63 @@
+# Veröffentlicht die Website automatisch auf GitHub Pages,
+# sobald Änderungen auf den Branch "main" hochgeladen werden.
+name: Auf GitHub Pages veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # erlaubt auch den manuellen Start unter "Actions"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - run: npm ci
+
+      # Ohne eigene Domain liegt die Seite unter https://<benutzer>.github.io/<repo-name>/.
+      # Mit eigener Domain (Datei public/CNAME vorhanden) liegt sie direkt unter "/".
+      - name: Basis-Pfad bestimmen
+        id: base
+        run: |
+          if [ -f public/CNAME ]; then
+            echo "href=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "href=/${{ github.event.repository.name }}/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Website bauen
+        run: npx ng build --base-href "${{ steps.base.outputs.href }}"
+
+      # GitHub Pages kennt keine Weiterleitungen: 404.html = Startseite,
+      # damit Unterseiten wie /leistungen auch beim direkten Aufruf funktionieren.
+      - name: 404-Seite für Unterseiten anlegen
+        run: cp dist/energieberatung/browser/index.html dist/energieberatung/browser/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/energieberatung/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

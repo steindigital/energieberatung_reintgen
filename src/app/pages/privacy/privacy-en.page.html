@@ -1,0 +1,123 @@
+<app-page-header title="Privacy policy" />
+
+<section class="section section--tight">
+  <div class="container container--narrow prose legal">
+    <!-- VOR VERÖFFENTLICHUNG ENTFERNEN / REMOVE BEFORE PUBLISHING -->
+    <app-placeholder-block title="Template – please review">
+      <p>
+        This privacy policy is a template and an English translation of the German Datenschutzhinweise. It describes
+        the website as delivered. Please complete all highlighted information – in particular on hosting and form
+        delivery –, keep it consistent with the German version and have it legally reviewed before publishing. Then
+        remove this note.
+      </p>
+    </app-placeholder-block>
+
+    <h2>1. Controller</h2>
+    <p>The controller responsible for data processing on this website is:</p>
+    <p>
+      <app-value [text]="site.ownerName" />
+      <br />
+      <app-value [text]="site.street" />
+      <br />
+      <app-value [text]="site.zip" /> <app-value [text]="site.city" />
+      <br />
+      Germany
+      <br />
+      Phone: <app-value [text]="site.phone" />
+      <br />
+      Email: <app-value [text]="site.email" />
+    </p>
+
+    <h2>2. General information</h2>
+    <p>
+      Protecting your personal data is important to me. Personal data is only processed on this website to the
+      extent necessary to operate the website and to handle your enquiries. Processing is based on the General Data
+      Protection Regulation (GDPR) and the German Federal Data Protection Act (BDSG).
+    </p>
+
+    <h2>3. Hosting and server log files</h2>
+    <p>
+      This website is hosted by the following provider: <app-value text="[Name and address of the hosting provider]" />.
+    </p>
+    <p>
+      When you access the website, the hosting provider automatically stores information transmitted by your browser
+      in so-called server log files, e.g. IP address, date and time of access, page accessed, browser type and
+      operating system. This data is technically necessary to deliver the website and to ensure its security. The
+      legal basis is Art. 6 (1) (f) GDPR (legitimate interest in secure and stable operation).
+    </p>
+    <p>
+      Storage period of the log files: <app-value text="[Storage period according to the hosting provider, e.g. number of days]" />.
+      A data processing agreement pursuant to Art. 28 GDPR has been concluded with the hosting provider.
+      <app-value text="[Please check and confirm]" />
+    </p>
+
+    <h2>4. Contacting me</h2>
+    <p>
+      If you contact me via the contact form, by email or by phone, I process the data you provide (whether you are
+      enquiring as a private individual or on behalf of a company, the name of the company or organisation if
+      applicable, name, email address, phone number if given, and the content of your enquiry) in order to handle
+      your enquiry.
+    </p>
+    <p>
+      The legal basis is Art. 6 (1) (b) GDPR if your enquiry relates to the conclusion or performance of a contract;
+      otherwise Art. 6 (1) (f) GDPR (legitimate interest in responding to enquiries). Providing your phone number is
+      voluntary.
+    </p>
+    <p>
+      Your data will be deleted as soon as it is no longer required to handle your enquiry and no statutory retention
+      obligations prevent deletion.
+    </p>
+    <p>
+      <strong>Technical transmission of the contact form:</strong>
+      <app-value
+        text="[Describe here how the form data is transmitted – e.g. via your own server or a form service (name, address, server location, data processing agreement). As long as no delivery has been set up, no data is transmitted via the form.]"
+      />
+    </p>
+
+    <h2>5. Storing your display setting (light/dark)</h2>
+    <p>
+      If you switch between the light and dark theme using the switch in the header, your choice is stored in your
+      browser's local storage (localStorage) under the key <code>theme-preference</code> so that it is kept for your
+      next visit. This information remains on your device and is not transmitted to me or to third parties. Storage is
+      necessary for the function you have explicitly requested (Section 25 (2) no. 2 TDDDG). You can delete the entry
+      at any time via your browser settings.
+    </p>
+
+    <h2>6. No cookies, no tracking</h2>
+    <p>
+      This website does not use cookies or any analytics or tracking services, and it does not load content or fonts
+      from third-party servers.
+    </p>
+
+    <h2>7. Links to other websites</h2>
+    <p>
+      This website contains links to external websites (e.g. of funding bodies). When you click on such a link, you
+      leave this website; the operator of the linked site is responsible for data processing there.
+    </p>
+
+    <h2>8. Your rights</h2>
+    <p>Under the GDPR, you have the following rights in particular:</p>
+    <ul>
+      <li>Access to the data stored about you (Art. 15 GDPR)</li>
+      <li>Rectification of inaccurate data (Art. 16 GDPR)</li>
+      <li>Erasure (Art. 17 GDPR)</li>
+      <li>Restriction of processing (Art. 18 GDPR)</li>
+      <li>Data portability (Art. 20 GDPR)</li>
+      <li>Objection to processing based on Art. 6 (1) (f) GDPR (Art. 21 GDPR)</li>
+    </ul>
+    <p>To exercise your rights, an informal message to the contact details above is sufficient.</p>
+    <p>
+      You also have the right to lodge a complaint with a data protection supervisory authority (Art. 77 GDPR). The
+      competent authority is in particular:
+      <app-value text="[Name and address of the data protection supervisory authority of your federal state]" />.
+    </p>
+
+    <h2>9. Encryption</h2>
+    <p>
+      For security reasons, this website uses SSL/TLS encryption. You can recognise an encrypted connection by
+      “https://” in your browser's address bar. <app-value text="[Please make sure your hosting provides HTTPS]" />
+    </p>
+
+    <p class="legal__date">Last updated: <app-value text="[Date]" /></p>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+<app-page-header title="Impressum" />
+
+<section class="section section--tight">
+  <div class="container container--narrow prose legal">
+    <!-- VOR VERÖFFENTLICHUNG ENTFERNEN -->
+    <app-placeholder-block title="Vorlage – bitte prüfen">
+      <p>
+        Dieses Impressum ist eine Vorlage mit Platzhaltern. Bitte ergänzen Sie alle markierten Angaben,
+        entfernen Sie nicht zutreffende Abschnitte und lassen Sie den Text vor der Veröffentlichung rechtlich
+        prüfen. Entfernen Sie anschließend diesen Hinweis.
+      </p>
+    </app-placeholder-block>
+
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>
+      <app-value [text]="site.ownerName" />
+      <br />
+      <app-value [text]="site.brandName" />
+      <br />
+      <app-value [text]="site.street" />
+      <br />
+      <app-value [text]="site.zip" /> <app-value [text]="site.city" />
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>
+      Telefon: <app-value [text]="site.phone" />
+      <br />
+      E-Mail: <app-value [text]="site.email" />
+    </p>
+
+    <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+    <p>
+      Berufsbezeichnung: <app-value [text]="site.localized.de.jobTitle" />
+      <br />
+      Verliehen in: <app-value text="[Staat, in dem die Berufsbezeichnung verliehen wurde – nur falls zutreffend]" />
+      <br />
+      Zuständige Kammer: <app-value text="[Name und Anschrift der Kammer – nur falls Kammermitgliedschaft besteht]" />
+      <br />
+      Berufsrechtliche Regelungen: <app-value text="[Bezeichnung und Fundstelle – nur falls zutreffend]" />
+    </p>
+
+    <h2>Umsatzsteuer-ID</h2>
+    <p>
+      Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: 
+      <app-value text="[USt-IdNr. – nur angeben, falls vorhanden; sonst Abschnitt entfernen]" />
+    </p>
+
+    <h2>Berufshaftpflichtversicherung</h2>
+    <p>
+      <app-value text="[Name und Anschrift des Versicherers, räumlicher Geltungsbereich – nur falls gesetzlich erforderlich bzw. gewünscht]" />
+    </p>
+
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>
+      <app-value [text]="site.ownerName" />
+      <br />
+      <app-value [text]="site.street" />, <app-value [text]="site.zip" /> <app-value [text]="site.city" />
+    </p>
+
+    <h2>Verbraucherstreitbeilegung</h2>
+    <p>
+      <app-value text="[Angabe zur Teilnahme an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle – bitte prüfen, ob und in welcher Form diese Angabe für Sie erforderlich ist]" />
+    </p>
+  </div>
+</section>

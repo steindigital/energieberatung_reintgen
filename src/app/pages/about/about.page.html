@@ -1,0 +1,74 @@
+<app-page-header [eyebrow]="t().about.eyebrow" [title]="t().about.title">
+  <p>{{ t().about.lead }}</p>
+</app-page-header>
+
+<!-- Vorstellung -->
+<section class="section">
+  <div class="container split split--top">
+    <!-- BILD: Porträtfoto einsetzen -->
+    <app-image-placeholder [label]="t().about.portrait" ratio="4 / 5" />
+    <div class="prose">
+      <h2><app-value [text]="site.ownerName" /></h2>
+      <p class="lead"><app-value [text]="i18n.siteText().jobTitle" /> <app-value [text]="i18n.siteText().region" /></p>
+      <!-- PLATZHALTER: Block durch Ihre persönliche Vorstellung (in beiden Sprachen) ersetzen -->
+      <app-placeholder-block [title]="t().about.introPlaceholderTitle">
+        @for (paragraph of t().about.introPlaceholder; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </app-placeholder-block>
+    </div>
+  </div>
+</section>
+
+<!-- Qualifikationen -->
+<section class="section section--alt" aria-labelledby="qualifikation-titel">
+  <div class="container container--narrow">
+    <div class="section-intro section-intro--left">
+      <p class="eyebrow">{{ t().about.qualificationsEyebrow }}</p>
+      <h2 id="qualifikation-titel">{{ t().about.qualificationsTitle }}</h2>
+    </div>
+    <ul class="check-list">
+      @for (item of t().about.qualifications; track item) {
+        <li>
+          <app-icon name="check" [size]="20" />
+          <span><app-value [text]="item" /></span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Arbeitsweise -->
+<section class="section" aria-labelledby="arbeitsweise-titel">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">{{ t().about.principlesEyebrow }}</p>
+      <h2 id="arbeitsweise-titel">{{ t().about.principlesTitle }}</h2>
+    </div>
+    <ul class="card-grid card-grid--2">
+      @for (principle of t().about.principles; track principle.title) {
+        <li class="card">
+          <span class="icon-badge"><app-icon [name]="principle.icon" /></span>
+          <h3>{{ principle.title }}</h3>
+          <p>{{ principle.text }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Motivation -->
+<section class="section section--alt" aria-labelledby="motivation-titel">
+  <div class="container container--narrow prose">
+    <p class="eyebrow">{{ t().about.motivationEyebrow }}</p>
+    <h2 id="motivation-titel">{{ t().about.motivationTitle }}</h2>
+    <!-- PLATZHALTER: Block durch Ihre persönliche Motivation (in beiden Sprachen) ersetzen -->
+    <app-placeholder-block [title]="t().about.motivationPlaceholderTitle">
+      @for (paragraph of t().about.motivationPlaceholder; track $index) {
+        <p>{{ paragraph }}</p>
+      }
+    </app-placeholder-block>
+  </div>
+</section>
+
+<app-cta-section [title]="t().about.ctaTitle" />
