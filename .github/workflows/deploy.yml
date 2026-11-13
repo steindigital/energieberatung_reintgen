@@ -1,10 +1,10 @@
 # Veröffentlicht die Website automatisch auf GitHub Pages,
-# sobald Änderungen auf den Branch "main" hochgeladen werden.
+# sobald Änderungen auf den Branch "develop" hochgeladen werden.
 name: Auf GitHub Pages veröffentlichen
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
   workflow_dispatch: # erlaubt auch den manuellen Start unter "Actions"
 
 permissions:
